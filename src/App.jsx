@@ -1,9 +1,14 @@
 import React from 'react'
+import { Header } from './Components/Header/HEader'
+import { Footer } from './Components/Footer/Footer'
+import { MainContainer } from './Components/MainContainer/MainContainer'
 
 export const App = () => {
   return (
-    <>  
-      <h1 className='text-4xl text-green-600 font-extrabold'>Hola Mundo</h1>
+    <>
+    <Header />
+    <MainContainer />
+    <Footer />
     </>
   )
 }
