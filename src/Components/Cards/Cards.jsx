@@ -1,18 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { CardCreation } from '../CardCreation/CardCreation';
 
 export const Cards = () => {
+
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      fetch('https://fakestoreapi.com/products')
+        .then((res) => res.json())
+        .then((data) => {
+          setProducts(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error al cargar productos:', error);
+          setLoading(false);
+        });
+    }, []);
+  
+    if (loading) {
+      return <p className="text-center mt-10">Cargando productos...</p>;
+    }
+  
   return (
     <>
-    <div className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300">
-    <img src={""} alt={""} className="w-full h-48 object-cover" />
-    <div className="p-4 flex flex-col justify-between flex-1">
-        <h2 className="text-lg font-semibold mb-2">HOla</h2>
-        <p className="text-sm text-gray-600 mb-4">descripcion</p>
-        <div className="mt-auto">
-        <p className="text-blue-600 font-bold text-lg">$1000000</p>
-        <p className="text-xs text-gray-400 mt-1">Categoria</p>
-        </div>
-    </div>
+     <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {products.map((producto) => (
+        <CardCreation key={producto.id} producto={producto} />
+      ))}
     </div>
     </>
   )
