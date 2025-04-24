@@ -25,6 +25,15 @@ export const Cards = () => {
   
   return (
     <>
+    <div className="mb-6">
+        <input
+          type="text"
+          placeholder="Buscar producto..."
+        //   value={search}
+        //   onChange={handleSearchChange}
+          className="w-full md:w-1/2 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"
+        />
+      </div> 
      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {products.map((producto) => (
         <CardCreation key={producto.id} producto={producto} />
